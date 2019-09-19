@@ -23,9 +23,13 @@ def rename(source, target, path):
                 with open(filePath, 'r', encoding='utf-8') as f:
                     for line in f:
                         print(line)
-                        if 'package com.bench.app.kk.platform.worker.web.base' in line:
-                            line = line.replace('package com.bench.app.kk.platform.worker.web.base',
-                                                'package com.bench.app.kk.platform.partner.web.base')
+                        # if 'package com.xxx.app.kk.xxx.worker.web.base' in line:
+                        #     line = line.replace('package com.xxx.app.kk.xxx.worker.web.base',
+                        #                         'package com.xxx.app.kk.xxx.partner.web.base')
+                        # 需要替换 位置package,import,xml文件,start类，普通业务文件，启动配置类 目前先只处理了java文件
+                        if 'com.xxx.app.kk.xxx.worker.web.base' in line:
+                            line = line.replace('com.xxx.app.kk.xxx.worker.web.base',
+                                                'com.xxx.app.kk.xxx.partner.web.base')
                         fileData += line
                 with open(filePath, 'w', encoding='utf-8') as w:
                     w.write(fileData)
@@ -35,4 +39,4 @@ def rename(source, target, path):
 
 
 if __name__ == '__main__':
-    rename('worker', 'partner', '/program/bench_source/kk.platform.worker.web.base/test')
+    rename('worker', 'partner', '/program/bench_source/kk.xxx.worker.web.base/test')
